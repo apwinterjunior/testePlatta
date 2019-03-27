@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label for="imagem">Imagem</label>
-                    <input type="text" class="form-control" name="imagem"/>
+                    <input type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg" name="imagem"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>
