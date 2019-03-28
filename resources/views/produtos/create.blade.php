@@ -20,7 +20,7 @@
                     </ul>
                 </div><br />
             @endif
-            <form method="post" action="{{ route('produtos.store') }}">
+            <form method="post" action="{{ route('produtos.store') }}" enctype="multipart/form-data">
                 <div class="form-group">
                     @csrf
                     <label for="nome">Nome do produto</label>
@@ -32,7 +32,12 @@
                 </div>
                 <div class="form-group">
                     <label for="categoria">Categoria</label>
-                    <input type="text" class="form-control" name="categoria"/>
+                    <select class="form-control" id="categoria" name="categoria">
+                        <option>Eletrônico</option>
+                        <option>Esporte</option>
+                        <option>Música</option>
+                        <option>Transporte</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
@@ -40,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label for="imagem">Imagem</label>
-                    <input type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg" name="imagem"/>
+                    <input type="file" class="form-control" name="imagem"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>

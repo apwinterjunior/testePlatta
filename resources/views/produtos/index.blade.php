@@ -19,6 +19,7 @@
                 <td>Nome</td>
                 <td>Preço</td>
                 <td>Categoria</td>
+                <td>Imagem</td>
                 <td colspan="2">Ação</td>
             </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <td>{{$produto->nome}}</td>
                     <td>{{$produto->preco}}</td>
                     <td>{{$produto->categoria}}</td>
+                    <td><img src={{asset(''. $produto->imagem)}}></td>
                     <td><a href="{{ route('produtos.edit',$produto->id)}}" class="btn btn-primary">Edit</a></td>
                     <td>
                         <form action="{{ route('produtos.destroy', $produto->id)}}" method="post">

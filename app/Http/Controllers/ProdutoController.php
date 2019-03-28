@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Produto;
+use Illuminate\Support\Facades\File;
+use Auth;
 
 class ProdutoController extends Controller
 {
@@ -14,9 +16,15 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::all();
 
-        return view('produtos.index', compact('produtos'));
+        if(Auth::check()){
+            $produtos = Produto::all();
+            return view('produtos.index', compact('produtos'));
+        }
+        else{
+            return redirect('/');
+        }
+
     }
 
     /**
@@ -26,7 +34,12 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view('produtos.create');
+        if(Auth::check()){
+            return view('produtos.create');
+        }
+        else{
+            return redirect('/');
+        }
     }
 
     /**
@@ -44,13 +57,23 @@ class ProdutoController extends Controller
             'descricao' => 'required',
             'imagem' => 'required'
         ]);
-        $produto = new Produto([
-            'nome' => $request->get('nome'),
-            'preco'=> $request->get('preco'),
-            'categoria'=> $request->get('categoria'),
-            'descricao'=> $request->get('descricao'),
-            'imagem'=> $request->get('imagem')
-        ]);
+        $produto = new Produto();
+
+        $produto->nome = $request->get('nome');
+        $produto->preco = $request->get('preco');
+        $produto->categoria = $request->get('categoria');
+        $produto->descricao = $request->get('descricao');
+
+        if($request->hasfile('imagem'))
+        {
+            //$produto->imagem = 'teste';
+            $file = $request->file('imagem');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time().'.'.$extension;
+            $file->move('storage/images/', $filename);
+            $produto->imagem = 'storage/images/'. $filename;
+        }
+
         $produto->save();
         return redirect('/produtos')->with('success', 'Produto cadastrado com sucesso!');
     }
@@ -74,9 +97,17 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        $produto = Produto::find($id);
 
-        return view('produtos.edit', compact('produto'));
+        if(Auth::check()){
+            $produto = Produto::find($id);
+
+            return view('produtos.edit', compact('produto'));
+        }
+        else{
+            return redirect('/');
+        }
+
+
     }
 
     /**
