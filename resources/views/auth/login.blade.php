@@ -41,7 +41,7 @@
 
                 <div class="form-group row justify-content-center" style="padding-top: 30px;">
                     <button type="submit" class="btn btn-lg btn-login">
-                        {{ __('Login') }}
+                        Entrar
                     </button>
                 </div>
             </form>

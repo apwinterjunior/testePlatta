@@ -134,3 +134,23 @@ body {
     background-color: #f5ad29;
     border-color: #dd9829;
 }
+
+::-webkit-input-placeholder {
+    text-align: center;
+    font-size: 12px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+    font-size: 12px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;
+    font-size: 12px;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+    font-size: 12px;
+}
