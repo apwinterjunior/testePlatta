@@ -52,7 +52,7 @@ class ProdutoController extends Controller
     {
         $request->validate([
             'nome'=>'required',
-            'preco'=> 'required|integer',
+            'preco'=> 'required|regex:/^\d*(\.\d{2})?$/',
             'categoria' => 'required',
             'descricao' => 'required',
             'imagem' => 'required'
